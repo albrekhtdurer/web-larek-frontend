@@ -6,12 +6,14 @@ export class ProductGallery extends Component<GalleryData> {
   gallery: HTMLElement;
   protected events: IEvents;
 
-  constructor(container: HTMLElement, events: IEvents, gallerySelector: string) {
+
+  //TODO: поправить доку
+  constructor(container: HTMLElement, events: IEvents) {
     super(container);
     this.events = events;
   }
 
   set productCards(products: HTMLElement[]) {
-    this.productCards = products;
+    this.container.replaceChildren(...products);
   }
 }

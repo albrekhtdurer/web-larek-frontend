@@ -1,8 +1,9 @@
 import { Component } from "../base/component";
+import { IProduct } from "../../types";
 import { BaseCardData } from "../../types";
 import { IEvents } from "../base/events";
 
-export class BaseCard<T> extends Component<BaseCardData> {
+export class BaseCard<T> extends Component<IProduct> {
   _price: HTMLElement;
   _title: HTMLElement;
   protected events: IEvents;
@@ -19,6 +20,7 @@ export class BaseCard<T> extends Component<BaseCardData> {
   }
 
   set price(value: string) {
-    this.setText(this._price, value);
+    const priceText = value  ? value + ' синапсов' : 'бесценно';
+    this.setText(this._price, priceText);
   }
 }
