@@ -110,8 +110,6 @@ events.on('basket: changed', () => {
     basketCard.index = index+1;
     return basketCard.render(product);
   });
-  productBasket.items = basketProductsHTMLList;
-  productBasket.render();
-  header.counter = basketProductsHTMLList.length;
-  header.render();
+  productBasket.render({items: basketProductsHTMLList, totalPrice: basket.getTotalPrice()});
+  header.render({counter: basketProductsHTMLList.length});
 })
