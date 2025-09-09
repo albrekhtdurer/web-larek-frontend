@@ -6,6 +6,7 @@ import { IEvents } from "../base/events";
 export class BaseCard<T> extends Component<IProduct> {
   _price: HTMLElement;
   _title: HTMLElement;
+  _id: string;
   protected events: IEvents;
 
   constructor(container: HTMLElement, priceSelector: string, titleSelector: string, events: IEvents) {
@@ -22,5 +23,14 @@ export class BaseCard<T> extends Component<IProduct> {
   set price(value: string) {
     const priceText = value  ? value + ' синапсов' : 'бесценно';
     this.setText(this._price, priceText);
+  }
+
+  //TODO: дока
+  set id(value: string) {
+    this._id = value;
+  }
+  
+  get id() {
+    return this._id;
   }
 }

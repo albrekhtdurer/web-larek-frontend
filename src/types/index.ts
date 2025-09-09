@@ -72,8 +72,7 @@ export interface FormPaymentAndAddressData extends BaseFormData {
 	inputs: NodeListOf<HTMLInputElement>;
 }
 
-export interface ProductBasket {
-	items: HTMLElement;
-	orderButton: HTMLButtonElement;
-	totalPrice: HTMLElement;
+export interface IProductBasket {
+	items: HTMLElement[];
+	totalPrice: number;
 }
