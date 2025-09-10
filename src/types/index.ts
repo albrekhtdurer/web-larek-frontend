@@ -11,7 +11,7 @@ export interface IProductWStatus extends IProduct{
   isInBasket: boolean;
 }
 
-export type PaymentType = 'byCard' | 'byCash' | '';
+export type PaymentType = 'card' | 'cash' | '';
 
 export interface IUser {
 	payment: PaymentType;
@@ -64,8 +64,8 @@ export interface ModalCardData extends GalleryCardData {
 }
 
 export interface BaseFormData {
-	submitButton: HTMLButtonElement;
-	validationError: HTMLElement;
+  valid: boolean;
+  errors: string[];
 }
 
 export interface FormEmailAndPhoneData extends BaseFormData {

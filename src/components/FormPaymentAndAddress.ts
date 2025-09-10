@@ -1,0 +1,37 @@
+import { BaseForm } from "./common/Form";
+import {FormPaymentAndAddressData } from '../types'
+import { IEvents } from "./base/events";
+import { ensureElement } from "../utils/utils";
+
+export class FormPaymentAndAddress extends BaseForm<FormPaymentAndAddressData> {
+  cashButton: HTMLButtonElement;
+  cardButton: HTMLButtonElement;
+
+  constructor(protected container: HTMLFormElement, formName: string, selectors: Record<string, string>, protected events: IEvents, errorMapping: Record<string, string>) {
+    const {buttonsContainerSelector, errorSelector} = selectors;
+    super(container, formName, errorSelector, events, errorMapping);
+
+    const buttonsContainer = ensureElement<HTMLElement>(buttonsContainerSelector, container);
+    this.cashButton = buttonsContainer.querySelector('button[name=cash]');
+    this.cardButton = buttonsContainer.querySelector('button[name=card]');
+
+    this.cashButton.addEventListener('click', () => {
+      this.togglePaymentTypeButtons(this.cashButton);
+      this.events.emit(`${this.name}: change`, {field: 'payment', value: 'cash'});
+    });
+    this.cardButton.addEventListener('click', () => {
+      this.togglePaymentTypeButtons(this.cardButton);
+      this.events.emit(`${this.name}: change`, {field: 'payment', value: 'card'});
+    });
+  }
+
+  togglePaymentTypeButtons(button: HTMLButtonElement):void {
+    if (button.name === 'cash') {
+      this.cashButton.classList.add('button_alt-active');
+      this.cardButton.classList.remove('button_alt-active');
+    } else {
+      this.cardButton.classList.add('button_alt-active');
+      this.cashButton.classList.remove('button_alt-active');
+    }
+  }
+}

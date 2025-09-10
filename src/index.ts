@@ -2,7 +2,7 @@ import './scss/styles.scss';
 
 import { EventEmitter } from './components/base/events';
 import { Api } from './components/base/api';
-import { API_URL, CDN_URL, CATEGORY_MAPPINGS } from './utils/constants';
+import { API_URL, CDN_URL, CATEGORY_MAPPINGS, ERROR_MAPPINGS } from './utils/constants';
 import { LarekApi } from './components/LarekApi';
 import { Catalogue } from './components/Catalogue';
 import { ProductGallery } from './components/ProductGallery';
@@ -14,6 +14,9 @@ import { Header } from './components/Header';
 import { Basket } from './components/Basket';
 import { ProductBasket } from './components/ProductBasket';
 import { BasketCard } from './components/BasketCard';
+import { FormPaymentAndAddress } from './components/FormPaymentAndAddress';
+import { User } from './components/User';
+import { IUser } from './types';
 
 const events = new EventEmitter();
 // Чтобы мониторить все события, для отладки
@@ -72,6 +75,16 @@ const basketCardSelectors = {
 
 const productBasket = new ProductBasket(cloneTemplate(productBasketTemplate), productBasketSelectors, events);
 
+const formPaymentAndAddressTemplate = document.querySelector('#order') as HTMLTemplateElement;
+const formPaymentAndAddressSelectors = {
+  buttonsContainerSelector: '.order__buttons', 
+  errorSelector: '.form__errors'
+}
+
+const formPaymentAndAddress = new FormPaymentAndAddress(cloneTemplate(formPaymentAndAddressTemplate), 'addressAndPayment', formPaymentAndAddressSelectors, events, ERROR_MAPPINGS);
+
+const user = new User(events, {payment: '', address: '', phone: '', email: ''});
+
 api
 	.getProductList()
 	.then((data) => {
@@ -118,4 +131,18 @@ events.on('basket: changed', () => {
   });
   productBasket.render({items: basketProductsHTMLList, totalPrice: basket.getTotalPrice()});
   header.render({counter: basketProductsHTMLList.length});
+});
+
+events.on('basket: order', () => {
+  modal.render({content: formPaymentAndAddress.render({valid: false, errors: []})});
+});
+
+events.on('addressAndPayment: change', (data: { field: keyof IUser, value: string }) => {
+  user.setUserDataField(data.field, data.value);
+  console.log(user);
+  const validationResult = user.validateFields(['address', 'payment']);
+  console.log(validationResult);
+  modal.render({content: formPaymentAndAddress.render({valid: validationResult.isValid, errors: validationResult.invalidFields})});
+
 })
+

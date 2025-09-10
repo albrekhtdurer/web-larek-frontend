@@ -191,7 +191,6 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + events: IEvents - экземпляр брокера событий
 
 * Методы:
-  + set submittButton(value: string): void - метод для установки текста кнопки отправки формы
   + set validationError(value: string): void - метод для установки текста ошибки валидации
   + setValid(): void - метод, делающий активной/неактивной кнопку отправки формы
   + getValues(): Record<string, string> - метод для получения значения полей формы
@@ -205,7 +204,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + emailField: string - id для компонента с полем формы для ввода email
   + phoneField: string - id для компонента с полем формы для ввода телефона
 
-11. Класс Form (наследник класса BaseForm<FormPaymentAndAddressData>) - класс для формы со способом оплаты и Email
+11. Класс FormPaymentAndAddress (наследник класса BaseForm<FormPaymentAndAddressData>) - класс для формы со способом оплаты и Email
 
 * Поля (помимо тех, что есть в родительском классе):
   + inputs: NodeListOf<HTMLInputElement> - все поля формы

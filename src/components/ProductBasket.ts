@@ -11,8 +11,10 @@ export class ProductBasket extends Component<IProductBasket> {
   
   constructor(container: HTMLElement, selectors: Record<string, string>, events: IEvents) {
     super(container);
+    this.events = events;
     const {orderButtonSelector, totalPriceSelector, basketItemsSelector} = selectors;
     this.orderButton = ensureElement<HTMLButtonElement>(orderButtonSelector, container);
+    this.orderButton.addEventListener('click', () => {this.events.emit('basket: order')});
     this._totalPrice = ensureElement<HTMLElement>(totalPriceSelector, container);
     this._items = ensureElement<HTMLElement>(basketItemsSelector, container);
     this.items = [];

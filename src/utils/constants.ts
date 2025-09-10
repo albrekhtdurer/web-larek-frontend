@@ -12,3 +12,10 @@ export const CATEGORY_MAPPINGS = {
   'кнопка': 'button',
   'хард-скил': 'hard'
 }
+
+export const ERROR_MAPPINGS = {
+  payment: 'Выберите способ оплаты',
+	email: 'Введите e-mail',
+	phone: 'Введите номер телефона',
+	address: 'Введите адрес'
+}
