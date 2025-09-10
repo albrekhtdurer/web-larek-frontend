@@ -12,6 +12,7 @@ export class BasketCard extends BaseCard<IProduct> {
     super(container, priceSelector, titleSelector, events);
     this._index = ensureElement<HTMLElement>(indexSelector, container);
     this.deleteButton = ensureElement<HTMLButtonElement>(deleteButtonSelector, container);
+    this.deleteButton.addEventListener('click', () => {this.events.emit('basket: deleteCard', {id: this._id})});
   }
 
   set index(value: number) {

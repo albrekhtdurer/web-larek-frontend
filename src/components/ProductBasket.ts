@@ -26,13 +26,14 @@ export class ProductBasket extends Component<IProductBasket> {
             textContent: 'Корзина пуста'
         }));
     }
+    this.toggleOrderButton(products);
   }
 
   set totalPrice(price: number) {
     this.setText(this._totalPrice, price + ' синапсов');
   }
 
-  toggleOrderButton(products: string[]) {
+  toggleOrderButton(products: HTMLElement[]) {
     if (products.length) {
         this.setDisabled(this.orderButton, false);
     } else {
