@@ -1,9 +1,9 @@
-import { IProduct } from "../types";
+import { IProductWStatus } from "../types";
 import { BaseCard } from "./common/BaseCard";
 import { IEvents } from "./base/events";
 
 
-export class ModalCard extends BaseCard<IProduct> {
+export class ModalCard extends BaseCard<IProductWStatus> {
   _category: HTMLElement;
   _image: HTMLImageElement;
   _description: HTMLElement;
@@ -23,6 +23,14 @@ export class ModalCard extends BaseCard<IProduct> {
 
   setBasketButtonText(value: string) {
     this.setText(this.basketButton, value);
+  }
+
+  toggleBasketButtonStatus(status: boolean) {
+    if (status) {
+      this.setBasketButtonText('Удалить из корзины');
+    } else {
+      this.setBasketButtonText('Добавить в корзину');
+    }
   }
 
   set image(value: string) {
@@ -48,5 +56,9 @@ export class ModalCard extends BaseCard<IProduct> {
       this.setDisabled(this.basketButton, true);
       this.setBasketButtonText('Недоступно');
     }
+  }
+
+  set isInBasket(value: boolean) {
+    this.toggleBasketButtonStatus(value);
   }
 }

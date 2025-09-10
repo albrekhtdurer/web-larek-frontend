@@ -88,8 +88,9 @@ events.on('catalogue: changed', () => {
 
 events.on('galleryCard: select', ({id}: {id: string}) => {
   if (modalCard.id !== id) {
-    const productForSelectedCard = catalogue.getProducts().find(item => item.id === id);
-    modal.render({content: modalCard.render(productForSelectedCard)});
+    const selectedProduct = catalogue.getProducts().find(item => item.id === id);
+    const selectedProductForCard = {...selectedProduct, isInBasket: basket.hasProduct(selectedProduct.id)};
+    modal.render({content: modalCard.render(selectedProductForCard)});
   } else {
     modal.render({content:modalCard.render()});
   }
@@ -102,6 +103,8 @@ events.on('basket: open', () => {
 events.on('galleryCard: addToBasket', ({id}: {id: string}) => {
   const product = catalogue.getProducts().find(item => item.id === id);
   basket.toggleProductInBasket(product);
+  const productForCard = {...product, isInBasket: basket.hasProduct(product.id)};
+  modal.render({content: modalCard.render(productForCard)});
 });
 
 events.on('basket: changed', () => {

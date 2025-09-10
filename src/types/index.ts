@@ -7,6 +7,10 @@ export interface IProduct {
 	price: number | null;
 }
 
+export interface IProductWStatus extends IProduct{
+  isInBasket: boolean;
+}
+
 export type PaymentType = 'byCard' | 'byCash' | '';
 
 export interface IUser {

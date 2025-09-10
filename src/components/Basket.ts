@@ -15,7 +15,7 @@ export class Basket extends Model {
   }
 
   getTotalPrice(): number {
-    return this.products.map(product => product.price).reduce((sum, price) => sum + price);
+    return this.products.map(product => product.price).reduce((sum, price) => sum + price, 0);
   }
 
   getTotal(): number {
@@ -29,7 +29,7 @@ export class Basket extends Model {
   toggleProductInBasket(product: IProduct): void {
     if (this.hasProduct(product.id)) {
       let productIndex = this.products.findIndex(basketProduct => product.id === basketProduct.id);
-      this.products.slice(productIndex, 1);
+      this.products.splice(productIndex, 1);
     } else {
       this.products.push(product);
     }
