@@ -101,7 +101,8 @@ events.on('catalogue: changed', () => {
 
 events.on('galleryCard: select', ({id}: {id: string}) => {
     const selectedProduct = catalogue.getProducts().find(item => item.id === id);
-    const selectedProductForCard = {...selectedProduct, isInBasket: basket.hasProduct(selectedProduct.id)};
+    const basketButtonStatus = !selectedProduct.price ? 'Недоступно' : basket.hasProduct(selectedProduct.id) ? 'Удалить из корзины' : 'Добавить в корзину';
+    const selectedProductForCard = {...selectedProduct, basketButtonStatus: basketButtonStatus};
     modal.render({content: modalCard.render(selectedProductForCard)});
 });
 
@@ -112,7 +113,8 @@ events.on('basket: open', () => {
 events.on('galleryCard: addToBasket', ({id}: {id: string}) => {
   const product = catalogue.getProducts().find(item => item.id === id);
   basket.toggleProductInBasket(product);
-  const productForCard = {...product, isInBasket: basket.hasProduct(product.id)};
+  const basketButtonStatus = basket.hasProduct(product.id) ? 'Удалить из корзины' : 'Добавить в корзину';
+  const productForCard = {...product, basketButtonStatus: basketButtonStatus};
   modal.render({content: modalCard.render(productForCard)});
 });
 

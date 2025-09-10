@@ -21,18 +21,6 @@ export class ModalCard extends BaseCard<IProductWStatus> {
     this.categoryMappings = categoryMappings;
   }
 
-  setBasketButtonText(value: string) {
-    this.setText(this.basketButton, value);
-  }
-
-  toggleBasketButtonStatus(status: boolean) {
-    if (status) {
-      this.setBasketButtonText('Удалить из корзины');
-    } else {
-      this.setBasketButtonText('Добавить в корзину');
-    }
-  }
-
   set image(value: string) {
     this.setImage(this._image, value, this._title.textContent);
   }
@@ -52,13 +40,11 @@ export class ModalCard extends BaseCard<IProductWStatus> {
   set price(value: string) {
     const priceText = value  ? value + ' синапсов' : 'бесценно';
     this.setText(this._price, priceText);
-    if (!value) {
-      this.setDisabled(this.basketButton, true);
-      this.setBasketButtonText('Недоступно');
-    }
   }
 
-  set isInBasket(value: boolean) {
-    this.toggleBasketButtonStatus(value);
+  set basketButtonStatus(value: string) {
+    const disable = (value) === 'Недоступно' ? true : false;
+    this.setDisabled(this.basketButton, disable);
+    this.setText(this.basketButton, value);
   }
 }

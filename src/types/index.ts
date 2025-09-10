@@ -8,7 +8,7 @@ export interface IProduct {
 }
 
 export interface IProductWStatus extends IProduct{
-  isInBasket: boolean;
+  basketButtonStatus: string;
 }
 
 export type PaymentType = 'card' | 'cash' | '';
