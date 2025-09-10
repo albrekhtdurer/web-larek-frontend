@@ -4,8 +4,8 @@ import { IEvents } from "./base/events";
 import { ensureElement } from "../utils/utils";
 
 export class BasketCard extends BaseCard<IProduct> {
-  _index: HTMLElement;
-  deleteButton: HTMLButtonElement;
+  protected _index: HTMLElement;
+  protected deleteButton: HTMLButtonElement;
 
   constructor(container: HTMLElement, events: IEvents, selectors: Record<string, string>) {
     const {indexSelector, deleteButtonSelector, priceSelector, titleSelector} = selectors;

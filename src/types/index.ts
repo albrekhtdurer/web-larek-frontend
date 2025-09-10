@@ -44,25 +44,6 @@ export interface IModalData {
 	content: HTMLElement;
 }
 
-export interface BaseCardData {
-	price: HTMLElement;
-	title: HTMLElement;
-}
-
-export interface BasketCardData extends BaseCardData {
-	index: HTMLElement;
-	button: HTMLButtonElement;
-}
-
-export interface GalleryCardData extends BaseCardData {
-	category: HTMLElement;
-	image: HTMLImageElement;
-}
-
-export interface ModalCardData extends GalleryCardData {
-	description: HTMLElement;
-}
-
 export interface BaseFormData {
   valid: boolean;
   errors: string[];

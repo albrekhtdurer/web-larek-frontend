@@ -4,11 +4,11 @@ import { IEvents } from "./base/events";
 
 
 export class ModalCard extends BaseCard<IProductWStatus> {
-  _category: HTMLElement;
-  _image: HTMLImageElement;
-  _description: HTMLElement;
-  categoryMappings: Record<string, string>;
-  basketButton: HTMLButtonElement;
+  protected _category: HTMLElement;
+  protected _image: HTMLImageElement;
+  protected _description: HTMLElement;
+  protected categoryMappings: Record<string, string>;
+  protected basketButton: HTMLButtonElement;
 
   constructor(container: HTMLElement, events: IEvents, selectors: Record<string, string>, categoryMappings: Record<string, string>) {
     const {priceSelector, titleSelector, categorySelector, imageSelector, descriptionSelector, basketButtonSelector} = selectors;

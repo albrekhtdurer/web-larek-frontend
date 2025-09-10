@@ -4,10 +4,10 @@ import { Component } from "../base/component";
 import { BaseFormData } from "../../types";
 
 export class BaseForm<T> extends Component<BaseFormData> {
-    name: string;
-    submitButton: HTMLButtonElement;
-    validationError: HTMLElement;
-    _errors: Record<string, string>;
+    protected name: string;
+    protected submitButton: HTMLButtonElement;
+    protected validationError: HTMLElement;
+    protected _errors: Record<string, string>;
 
     constructor(protected container: HTMLFormElement, formName: string, errorSelector: string, protected events: IEvents, errorMapping: Record<string, string>) {
         super(container);

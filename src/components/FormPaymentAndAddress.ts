@@ -4,8 +4,8 @@ import { IEvents } from "./base/events";
 import { ensureElement } from "../utils/utils";
 
 export class FormPaymentAndAddress extends BaseForm<FormPaymentAndAddressData> {
-  cashButton: HTMLButtonElement;
-  cardButton: HTMLButtonElement;
+  protected cashButton: HTMLButtonElement;
+  protected cardButton: HTMLButtonElement;
 
   constructor(protected container: HTMLFormElement, formName: string, selectors: Record<string, string>, protected events: IEvents, errorMapping: Record<string, string>) {
     const {buttonsContainerSelector, errorSelector} = selectors;

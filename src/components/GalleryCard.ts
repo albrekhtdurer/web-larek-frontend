@@ -3,9 +3,9 @@ import { IProduct } from "../types";
 import { IEvents } from "./base/events";
 
 export class GalleryCard extends BaseCard<IProduct> {
-  _category: HTMLElement;
-  _image: HTMLImageElement;
-  categoryMappings: Record<string, string>;
+  protected _category: HTMLElement;
+  protected _image: HTMLImageElement;
+  protected categoryMappings: Record<string, string>;
 
   constructor(container: HTMLElement, events: IEvents, selectors: Record<string, string>, categoryMappings: Record<string, string>) {
     const {priceSelector, titleSelector, categorySelector, imageSelector, descriptionSelector, basketButtonSelector} = selectors;

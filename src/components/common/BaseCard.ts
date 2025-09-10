@@ -1,12 +1,11 @@
 import { Component } from "../base/component";
 import { IProduct } from "../../types";
-import { BaseCardData } from "../../types";
 import { IEvents } from "../base/events";
 
 export class BaseCard<T> extends Component<IProduct> {
-  _price: HTMLElement;
-  _title: HTMLElement;
-  _id: string;
+  protected _price: HTMLElement;
+  protected _title: HTMLElement;
+  protected _id: string;
   protected events: IEvents;
 
   constructor(container: HTMLElement, priceSelector: string, titleSelector: string, events: IEvents) {

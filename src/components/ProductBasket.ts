@@ -4,9 +4,9 @@ import { Component } from "./base/component";
 import { IEvents } from "./base/events";
 
 export class ProductBasket extends Component<IProductBasket> {
-  _items: HTMLElement;
-  orderButton: HTMLButtonElement;
-  _totalPrice: HTMLElement;
+  protected _items: HTMLElement;
+  protected orderButton: HTMLButtonElement;
+  protected _totalPrice: HTMLElement;
   protected events: IEvents;
   
   constructor(container: HTMLElement, selectors: Record<string, string>, events: IEvents) {

@@ -3,10 +3,9 @@ import { IEvents } from "./base/events";
 import { Model } from "./base/model";
 
 export class User extends Model {
-  userData: IUser;
-  formErrors: FormErrors;
+  protected userData: IUser;
 
-  constructor(events: IEvents, userData?: IUser) {
+  constructor(events: IEvents, userData: IUser) {
     super(events);
     this.userData = userData;
   }
