@@ -20,12 +20,12 @@ export class BaseForm<T> extends Component<BaseFormData> {
           const target = e.target as HTMLInputElement;
           const field = target.name as keyof T;
           const value = target.value;
-          this.events.emit(`${this.name}: change`, {field, value});
+          this.events.emit(`${this.name}: input`, {field, value});
         });
 
         this.container.addEventListener('submit', (e: Event) => {
             e.preventDefault();
-            this.events.emit(`${this.container.name}:submit`);
+            this.events.emit(`${this.name}: submit`);
         });
     }
 

@@ -22,6 +22,7 @@ export class User extends Model {
     } else {
       this.userData[field] = value;
     }
+    this.events.emit('user: changed');
   }
 
   getUserData(): IUser {

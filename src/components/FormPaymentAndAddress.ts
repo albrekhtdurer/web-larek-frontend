@@ -17,11 +17,11 @@ export class FormPaymentAndAddress extends BaseForm<FormPaymentAndAddressData> {
 
     this.cashButton.addEventListener('click', () => {
       this.togglePaymentTypeButtons(this.cashButton);
-      this.events.emit(`${this.name}: change`, {field: 'payment', value: 'cash'});
+      this.events.emit(`${this.name}: input`, {field: 'payment', value: 'cash'});
     });
     this.cardButton.addEventListener('click', () => {
       this.togglePaymentTypeButtons(this.cardButton);
-      this.events.emit(`${this.name}: change`, {field: 'payment', value: 'card'});
+      this.events.emit(`${this.name}: input`, {field: 'payment', value: 'card'});
     });
   }
 

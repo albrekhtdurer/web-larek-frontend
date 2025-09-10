@@ -17,6 +17,7 @@ import { BasketCard } from './components/BasketCard';
 import { FormPaymentAndAddress } from './components/FormPaymentAndAddress';
 import { User } from './components/User';
 import { IUser } from './types';
+import { BaseForm } from './components/common/Form';
 
 const events = new EventEmitter();
 // Чтобы мониторить все события, для отладки
@@ -83,6 +84,9 @@ const formPaymentAndAddressSelectors = {
 
 const formPaymentAndAddress = new FormPaymentAndAddress(cloneTemplate(formPaymentAndAddressTemplate), 'addressAndPayment', formPaymentAndAddressSelectors, events, ERROR_MAPPINGS);
 
+const formEmailAndPhoneTemplate = document.querySelector('#contacts') as HTMLTemplateElement;
+const formEmailAndPhone = new BaseForm(cloneTemplate(formEmailAndPhoneTemplate), 'emailAndPhone', '.form__errors', events, ERROR_MAPPINGS);
+
 const user = new User(events, {payment: '', address: '', phone: '', email: ''});
 
 api
@@ -101,7 +105,7 @@ events.on('catalogue: changed', () => {
 
 events.on('galleryCard: select', ({id}: {id: string}) => {
     const selectedProduct = catalogue.getProducts().find(item => item.id === id);
-    const basketButtonStatus = !selectedProduct.price ? 'Недоступно' : basket.hasProduct(selectedProduct.id) ? 'Удалить из корзины' : 'Добавить в корзину';
+    const basketButtonStatus = !selectedProduct.price ? 'Недоступно' : basket.hasProduct(selectedProduct.id) ? 'Удалить из корзины' : 'Купить';
     const selectedProductForCard = {...selectedProduct, basketButtonStatus: basketButtonStatus};
     modal.render({content: modalCard.render(selectedProductForCard)});
 });
@@ -113,7 +117,7 @@ events.on('basket: open', () => {
 events.on('galleryCard: addToBasket', ({id}: {id: string}) => {
   const product = catalogue.getProducts().find(item => item.id === id);
   basket.toggleProductInBasket(product);
-  const basketButtonStatus = basket.hasProduct(product.id) ? 'Удалить из корзины' : 'Добавить в корзину';
+  const basketButtonStatus = basket.hasProduct(product.id) ? 'Удалить из корзины' : 'Купить';
   const productForCard = {...product, basketButtonStatus: basketButtonStatus};
   modal.render({content: modalCard.render(productForCard)});
 });
@@ -136,15 +140,27 @@ events.on('basket: changed', () => {
 });
 
 events.on('basket: order', () => {
-  modal.render({content: formPaymentAndAddress.render({valid: false, errors: []})});
+  const validationResult = user.validateFields(['address', 'payment']);
+  modal.render({content: formPaymentAndAddress.render({valid: validationResult.isValid, errors: []})});
 });
 
-events.on('addressAndPayment: change', (data: { field: keyof IUser, value: string }) => {
+events.on('addressAndPayment: input', (data: { field: keyof IUser, value: string }) => {
   user.setUserDataField(data.field, data.value);
-  console.log(user);
   const validationResult = user.validateFields(['address', 'payment']);
-  console.log(validationResult);
-  modal.render({content: formPaymentAndAddress.render({valid: validationResult.isValid, errors: validationResult.invalidFields})});
+  formPaymentAndAddress.valid = validationResult.isValid;
+  formPaymentAndAddress.errors = validationResult.invalidFields;
+});
 
-})
+events.on('addressAndPayment: submit', () => {
+  const validationResult = user.validateFields(['email', 'phone']);
+  modal.render({content: formEmailAndPhone.render({valid: validationResult.isValid, errors: []})});
+});
+
+
+events.on('emailAndPhone: input', (data: { field: keyof IUser, value: string }) => {
+  user.setUserDataField(data.field, data.value);
+  const validationResult = user.validateFields(['email', 'phone']);
+  formEmailAndPhone.valid = validationResult.isValid;
+  formEmailAndPhone.errors = validationResult.invalidFields;
+});
 
