@@ -26,23 +26,23 @@ events.onAll(({ eventName, data }) => {
   console.log(eventName, data);
 });
 
-const baseApi = new Api(API_URL);
-const api = new LarekApi(baseApi, CDN_URL);
-
-const catalogue = new Catalogue(events, []);
-
+// Достаем все шаблоны и контейнеры
 const galleryCardTemplate = document.querySelector('#card-catalog') as HTMLTemplateElement;
+const galleryNode = document.querySelector('.gallery') as HTMLElement;
+const modalCardTemplate = document.querySelector('#card-preview') as HTMLTemplateElement;
+const productBasketTemplate = document.querySelector('#basket') as HTMLTemplateElement;
+const basketCardTemplate = document.querySelector('#card-basket') as HTMLTemplateElement;
+const formPaymentAndAddressTemplate = document.querySelector('#order') as HTMLTemplateElement;
+const formEmailAndPhoneTemplate = document.querySelector('#contacts') as HTMLTemplateElement;
+const successTemplate = document.querySelector('#success') as HTMLTemplateElement;
+
+// Фиксируем селекторы для отображения
 const galleryCardSelectors = {
   priceSelector: '.card__price',
   titleSelector: '.card__title',
   categorySelector: '.card__category',
   imageSelector: '.card__image'
 }
-const galleryNode = document.querySelector('.gallery') as HTMLElement;
-
-const gallery = new ProductGallery(galleryNode, events);
-
-const modalCardTemplate = document.querySelector('#card-preview') as HTMLTemplateElement;
 const modalCardSelectors = {
   priceSelector: '.card__price',
   titleSelector: '.card__title',
@@ -51,58 +51,47 @@ const modalCardSelectors = {
   descriptionSelector: '.card__text',
   basketButtonSelector: '.card__button'
 }
-
-const modalCard = new ModalCard(cloneTemplate(modalCardTemplate), events, modalCardSelectors, CATEGORY_MAPPINGS);
-
-const modal = new Modal(ensureElement<HTMLElement>('#modal-container'), events);
-
-const header = new Header(ensureElement<HTMLElement>('.header__container'), {counterSelector: '.header__basket-counter', basketButtonSelector: '.header__basket'},  events);
-
-const basket = new Basket(events);
-
-const productBasketTemplate = document.querySelector('#basket') as HTMLTemplateElement;
 const productBasketSelectors = {
   orderButtonSelector: '.basket__button',
   totalPriceSelector: '.basket__price', 
   basketItemsSelector: '.basket__list',
 }
-
-const basketCardTemplate = document.querySelector('#card-basket') as HTMLTemplateElement;
 const basketCardSelectors = {
   indexSelector: '.basket__item-index',
   deleteButtonSelector: '.basket__item-delete',
   priceSelector: '.card__price',
   titleSelector: '.card__title',
 }
-
-const productBasket = new ProductBasket(cloneTemplate(productBasketTemplate), productBasketSelectors, events);
-
-const formPaymentAndAddressTemplate = document.querySelector('#order') as HTMLTemplateElement;
 const formPaymentAndAddressSelectors = {
   buttonsContainerSelector: '.order__buttons', 
   errorSelector: '.form__errors'
 }
-
-const formPaymentAndAddress = new FormPaymentAndAddress(cloneTemplate(formPaymentAndAddressTemplate), 'addressAndPayment', formPaymentAndAddressSelectors, events, ERROR_MAPPINGS);
-
-const formEmailAndPhoneTemplate = document.querySelector('#contacts') as HTMLTemplateElement;
-const formEmailAndPhone = new BaseForm(cloneTemplate(formEmailAndPhoneTemplate), 'emailAndPhone', '.form__errors', events, ERROR_MAPPINGS);
-
-const user = new User(events, {payment: '', address: '', phone: '', email: ''});
-
-const successTemplate = document.querySelector('#success') as HTMLTemplateElement;
 const successSelectors = {
   totalSumSelector: '.order-success__description',
   closeButtonSelector: '.order-success__close'
 }
 
-api
-	.getProductList()
-	.then((data) => {
-		catalogue.setProducts(data);
-		console.log(catalogue);
-	})
-	.catch((err) => console.log(err));
+
+
+// Классы апи
+const baseApi = new Api(API_URL);
+const api = new LarekApi(baseApi, CDN_URL);
+
+// Классы модели
+const catalogue = new Catalogue(events, []);
+const basket = new Basket(events);
+const user = new User(events, {payment: '', address: '', phone: '', email: ''});
+
+// Классы отображения
+
+const gallery = new ProductGallery(galleryNode, events);
+const modalCard = new ModalCard(cloneTemplate(modalCardTemplate), events, modalCardSelectors, CATEGORY_MAPPINGS);
+const modal = new Modal(ensureElement<HTMLElement>('#modal-container'), events);
+const header = new Header(ensureElement<HTMLElement>('.header__container'), {counterSelector: '.header__basket-counter', basketButtonSelector: '.header__basket'},  events);
+const productBasket = new ProductBasket(cloneTemplate(productBasketTemplate), productBasketSelectors, events);
+const formPaymentAndAddress = new FormPaymentAndAddress(cloneTemplate(formPaymentAndAddressTemplate), 'addressAndPayment', formPaymentAndAddressSelectors, events, ERROR_MAPPINGS);
+const formEmailAndPhone = new BaseForm(cloneTemplate(formEmailAndPhoneTemplate), 'emailAndPhone', '.form__errors', events, ERROR_MAPPINGS);
+
 
 events.on('catalogue: changed', () => {
   const productsHTMLList = catalogue.getProducts().map(item => new GalleryCard(cloneTemplate(galleryCardTemplate), events, galleryCardSelectors, CATEGORY_MAPPINGS).render(item));
@@ -197,3 +186,11 @@ events.on('order: success', () => {
 events.on('success: close', () => {
   modal.close();
 });
+
+api
+	.getProductList()
+	.then((data) => {
+		catalogue.setProducts(data);
+		console.log(catalogue);
+	})
+	.catch((err) => console.log(err));
