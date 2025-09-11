@@ -1,4 +1,4 @@
-import { BaseForm } from "../common/Form";
+import { BaseForm } from "../common/BaseForm";
 import { IEvents } from "../base/events";
 import { ensureElement } from "../../utils/utils";
 import { IFormPaymentAndAddressData } from "../../types";

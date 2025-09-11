@@ -17,7 +17,7 @@ import { BasketCard } from './components/View/BasketCard';
 import { FormPaymentAndAddress } from './components/View/FormPaymentAndAddress';
 import { User } from './components/Model/User';
 import { IUser } from './types';
-import { BaseForm } from './components/common/Form';
+import { BaseForm } from './components/common/BaseForm';
 import { SuccessMessage } from './components/View/SuccessMessage';
 
 const events = new EventEmitter();
