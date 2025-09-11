@@ -81,11 +81,10 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 3. Класс ProductGallery (наследник класса Component<IGalleryData>) - Класс для отображения хедера
 
 * Поля:
-  + gallery: HTMLElement - компонент с галереей карточек
+  + protected gallery: HTMLElement - компонент с галереей карточек
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + gallerySelector: string - css-класс для компонента с галереей карточек
   + events: IEvents - экземпляр брокера событий
 
 * Методы:
