@@ -178,21 +178,23 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 9. Класс BaseForm<T> (наследник класса Component<IBaseFormData>) - базовый класс для формы
 
 * Поля (помимо тех, что есть в родительском классе):
-  + submitButton: HTMLButtonElement - компонент с кнопкой отправки формы
-  + validationError: HTMLElement - компонент с текстом ошибки валидации
-  + errors: Record<string, string> - справочник с текстами ошибок, выводящихся в случае фейла валидации
+  + protected submitButton: HTMLButtonElement - компонент с кнопкой отправки формы
+  + protectedvalidationError: HTMLElement - компонент с текстом ошибки валидации
+  + protected _errors: Record<string, string> - справочник с текстами ошибок, выводящихся в случае фейла валидации
+  + protected name: string - название формы
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + submitButtonClass: string - css-класс для компонента кнопки отправки формы
-  + validationErrorClass: string - css-класс для компонента ошибки валидации
-  + errors: Record<string, string> - справочник с текстами ошибок, выводящихся в случае фейла валидации
+  + formName: string - название формы
+  + errorSelector: string - селектор для компонента ошибки валидации
+  + errorMapping: Record<string, string> - справочник с текстами ошибок, выводящихся в случае фейла валидации
   + events: IEvents - экземпляр брокера событий
 
 * Методы:
-  + set validationError(value: string): void - метод для установки текста ошибки валидации
-  + setValid(): void - метод, делающий активной/неактивной кнопку отправки формы
-  + getValues(): Record<string, string> - метод для получения значения полей формы
+  + set errors(errors: string[]): - метод для установки текста ошибки валидации
+  + set valid(): -  сеттер статуса формы (валидна/невалидна)
+  + getValues(): HTMLFormControlsCollection - метод для получения полей формы
+  + reset(): void - сбрасывает значения полей формы
 
 10. Класс FormEmailAndPhone (наследник класса BaseForm<FormEmailAndPhoneData>) - класс для формы с телефоном и Email
 
