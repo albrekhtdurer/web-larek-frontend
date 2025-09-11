@@ -96,6 +96,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 * Поля:
   + protected closeButton: HTMLButtonElement
   + protected _content: HTMLElement
+  + protected elToBlock: HTMLElement - экран, который нужно блокировать при открытии модального окна
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):

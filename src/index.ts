@@ -72,7 +72,8 @@ const successSelectors = {
 }
 const modalSelectors = {
   closeButtonSelector: '.modal__close',
-  contentSelector: '.modal__content'
+  contentSelector: '.modal__content',
+  elToBlocSelector: '.page__wrapper',
 }
 
 
