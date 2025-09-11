@@ -191,3 +191,7 @@ events.on('order: success', () => {
   basket.clearBasket();
   user.clearUserData();
 });
+
+events.on('success: close', () => {
+  modal.close();
+});

@@ -14,6 +14,7 @@ export class SuccessMessage extends Component<SuccessData> {
     this._totalSum = ensureElement<HTMLElement>(totalSumSelector, container);
     this.events = events;
     this.closeButton = ensureElement<HTMLButtonElement>(closeButtonSelector, container);
+    this.closeButton.addEventListener('click', () => this.events.emit('success: close'));
     this.totalSum = totalNumber;
   }
 
