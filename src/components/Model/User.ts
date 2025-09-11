@@ -21,7 +21,7 @@ export class User extends Model {
     } else {
       this.userData[field] = value;
     }
-    this.events.emit('user: changed');
+    this.emitChanges('user: changed');
   }
 
   getUserData(): IUser {
@@ -37,5 +37,15 @@ export class User extends Model {
         return result;
       }, []);
     return {isValid: invalidFields.length == 0, invalidFields};
+  }
+
+  clearUserData(): void {
+    this.userData = {
+      phone: '',
+      email: '',
+      address: '',
+      payment: '',
+    }
+    this.emitChanges('user: changed');
   }
 }

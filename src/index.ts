@@ -179,9 +179,15 @@ events.on('emailAndPhone: submit', () => {
     modal.render({
         content: success.render({})
     });
+    events.emit('order: success');
   })
   .catch(err => {
       console.error(err);
   });
 });
 
+
+events.on('order: success', () => {
+  basket.clearBasket();
+  user.clearUserData();
+});

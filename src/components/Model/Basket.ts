@@ -35,4 +35,9 @@ export class Basket extends Model {
     }
     this.emitChanges('basket: changed');
   }
+
+  clearBasket(): void {
+    this.products = [];
+    this.emitChanges('basket: changed');
+  }
 }
