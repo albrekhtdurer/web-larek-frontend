@@ -173,7 +173,6 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + set category(value: string) - метод для установки категории товара
   + set image(value: string) - метод для установки картинки товара
   + set description(value: string) - метод для установки описания товара
-  + set price(value: string) - метод для установки цены товара (переопределен относительно родительского класса)
   + set basketButtonStatus(value: string) - метод для установки текста и статуса кнопки добавления в корзину
 
 9. Класс BaseForm<T> (наследник класса Component<IBaseFormData>) - базовый класс для формы
