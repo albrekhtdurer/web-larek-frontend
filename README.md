@@ -67,17 +67,16 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 2. Класс Header (наследник класса Component<IHeaderData>) - Класс для отображения галереи карточек товаров
 
 * Поля:
-  + counterClass: HTMLButtonElement - компонент span-поля с общим числом товаров в корзине
-  + basketButton: HTMLElement - компонент кнопки открытия корзины
+  + protected counterSpan: HTMLElement - компонент span-поля с общим числом товаров в корзине
+  + protected basketButton: HTMLButtonElement - компонент кнопки открытия корзины
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + counterClass: string - css-класс для компонента span-поля с общим числом товаров в корзине
-  + basketButtonClass: string - css-класс для компонента кнопки открытия корзины
+  + selectors: Record<string, string> - справочник с css-селекторами для компонентов counterSpan и basketButton
   + events: IEvents - экземпляр брокера событий 
 
 * Методы:
-  + set counter(total: number): void - метод для установки значения общего числа товаров в корзине
+  + set counter(total: number) - метод для установки значения общего числа товаров в корзине
 
 3. Класс ProductGallery (наследник класса Component<IGalleryData>) - Класс для отображения хедера
 
