@@ -61,3 +61,7 @@ export interface IProductBasket {
 	items: HTMLElement[];
 	totalPrice: number;
 }
+
+export interface SuccessData {
+  totalSum: number;
+}
