@@ -1,6 +1,6 @@
 import { Api } from "./base/api";
 import { ApiListResponse } from "./base/api";
-import { IProduct } from "../types";
+import { IOrder, IOrderResult, IProduct } from "../types";
 
 export class LarekApi {
   protected baseApi: Api;
@@ -20,5 +20,11 @@ export class LarekApi {
 );
   }
 
-  //TODO: sendOrder()
+  sendOrder(order: IOrder): Promise<IOrderResult> {
+    return this.baseApi.post('/order', order).then(
+      (data: IOrderResult) => data
+    );
+  }
 }
+
+
