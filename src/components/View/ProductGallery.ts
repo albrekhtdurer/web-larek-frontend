@@ -1,6 +1,6 @@
-import { Component } from "./base/component";
-import { GalleryData } from "../types";
-import { IEvents } from "./base/events";
+import { Component } from "../base/component";
+import { GalleryData } from "../../types";
+import { IEvents } from "../base/events";
 
 export class ProductGallery extends Component<GalleryData> {
   protected gallery: HTMLElement;

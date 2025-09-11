@@ -1,6 +1,6 @@
-import { BaseCard } from "./common/BaseCard";
-import { IProduct } from "../types";
-import { IEvents } from "./base/events";
+import { BaseCard } from "../common/BaseCard";
+import { IProduct } from "../../types";
+import { IEvents } from "../base/events";
 
 export class GalleryCard extends BaseCard<IProduct> {
   protected _category: HTMLElement;

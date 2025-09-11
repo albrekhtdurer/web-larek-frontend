@@ -4,18 +4,18 @@ import { EventEmitter } from './components/base/events';
 import { Api } from './components/base/api';
 import { API_URL, CDN_URL, CATEGORY_MAPPINGS, ERROR_MAPPINGS } from './utils/constants';
 import { LarekApi } from './components/LarekApi';
-import { Catalogue } from './components/Catalogue';
-import { ProductGallery } from './components/ProductGallery';
-import { GalleryCard } from './components/GalleryCard';
+import { Catalogue } from './components/Model/Catalogue';
+import { ProductGallery } from './components/View/ProductGallery';
+import { GalleryCard } from './components/View/GalleryCard';
 import { cloneTemplate, ensureElement } from './utils/utils';
-import { ModalCard } from './components/ModalCard';
+import { ModalCard } from './components/View/ModalCard';
 import { Modal } from './components/common/Modal';
-import { Header } from './components/Header';
-import { Basket } from './components/Basket';
-import { ProductBasket } from './components/ProductBasket';
-import { BasketCard } from './components/BasketCard';
-import { FormPaymentAndAddress } from './components/FormPaymentAndAddress';
-import { User } from './components/User';
+import { Header } from './components/View/Header';
+import { Basket } from './components/Model/Basket';
+import { ProductBasket } from './components/View/ProductBasket';
+import { BasketCard } from './components/View/BasketCard';
+import { FormPaymentAndAddress } from './components/View/FormPaymentAndAddress';
+import { User } from './components/Model/User';
 import { IUser } from './types';
 import { BaseForm } from './components/common/Form';
 
@@ -23,7 +23,7 @@ const events = new EventEmitter();
 // Чтобы мониторить все события, для отладки
 events.onAll(({ eventName, data }) => {
   console.log(eventName, data);
-})
+});
 
 const baseApi = new Api(API_URL);
 const api = new LarekApi(baseApi, CDN_URL);
@@ -163,4 +163,6 @@ events.on('emailAndPhone: input', (data: { field: keyof IUser, value: string }) 
   formEmailAndPhone.valid = validationResult.isValid;
   formEmailAndPhone.errors = validationResult.invalidFields;
 });
+
+
 

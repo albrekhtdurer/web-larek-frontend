@@ -1,7 +1,7 @@
-import { BaseForm } from "./common/Form";
-import {FormPaymentAndAddressData } from '../types'
-import { IEvents } from "./base/events";
-import { ensureElement } from "../utils/utils";
+import { BaseForm } from "../common/Form";
+import {FormPaymentAndAddressData } from '../../types'
+import { IEvents } from "../base/events";
+import { ensureElement } from "../../utils/utils";
 
 export class FormPaymentAndAddress extends BaseForm<FormPaymentAndAddressData> {
   protected cashButton: HTMLButtonElement;

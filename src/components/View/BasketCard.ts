@@ -1,7 +1,7 @@
-import { BaseCard } from "./common/BaseCard";
-import { IProduct } from "../types";
-import { IEvents } from "./base/events";
-import { ensureElement } from "../utils/utils";
+import { BaseCard } from "../common/BaseCard";
+import { IProduct } from "../../types";
+import { IEvents } from "../base/events";
+import { ensureElement } from "../../utils/utils";
 
 export class BasketCard extends BaseCard<IProduct> {
   protected _index: HTMLElement;

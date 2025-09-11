@@ -1,6 +1,6 @@
-import { IProduct } from '../types';
-import { IEvents } from './base/events';
-import {Model} from './base/model'
+import { IProduct } from '../../types';
+import { IEvents } from '../base/events';
+import {Model} from '../base/model'
 
 export class Catalogue extends Model {
   protected products: IProduct[];

@@ -1,7 +1,7 @@
-import { IProductBasket } from "../types";
-import { createElement, ensureElement } from "../utils/utils";
-import { Component } from "./base/component";
-import { IEvents } from "./base/events";
+import { IProductBasket } from "../../types";
+import { createElement, ensureElement } from "../../utils/utils";
+import { Component } from "../base/component";
+import { IEvents } from "../base/events";
 
 export class ProductBasket extends Component<IProductBasket> {
   protected _items: HTMLElement;

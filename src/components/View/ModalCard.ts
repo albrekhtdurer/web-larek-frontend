@@ -1,6 +1,6 @@
-import { IProductWStatus } from "../types";
-import { BaseCard } from "./common/BaseCard";
-import { IEvents } from "./base/events";
+import { IProductWStatus } from "../../types";
+import { BaseCard } from "../common/BaseCard";
+import { IEvents } from "../base/events";
 
 
 export class ModalCard extends BaseCard<IProductWStatus> {

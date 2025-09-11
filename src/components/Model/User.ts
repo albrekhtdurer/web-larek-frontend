@@ -1,6 +1,6 @@
-import { FormErrors, IUser, PaymentType } from "../types";
-import { IEvents } from "./base/events";
-import { Model } from "./base/model";
+import { FormErrors, IUser, PaymentType } from "../../types";
+import { IEvents } from "../base/events";
+import { Model } from "../base/model";
 
 export class User extends Model {
   protected userData: IUser;
