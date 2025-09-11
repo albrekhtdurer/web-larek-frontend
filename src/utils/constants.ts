@@ -14,8 +14,8 @@ export const CATEGORY_MAPPINGS = {
 }
 
 export const ERROR_MAPPINGS = {
-  payment: 'Выберите способ оплаты',
-	email: 'Введите e-mail',
-	phone: 'Введите номер телефона',
-	address: 'Введите адрес'
+  payment: 'Необходимо выбрать способ оплаты',
+	email: 'Необходимо указать e-mail',
+	phone: 'Необходимо указать номер телефона',
+	address: 'Необходимо указать адрес'
 }
