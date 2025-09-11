@@ -70,6 +70,10 @@ const successSelectors = {
   totalSumSelector: '.order-success__description',
   closeButtonSelector: '.order-success__close'
 }
+const modalSelectors = {
+  closeButtonSelector: '.modal__close',
+  contentSelector: '.modal__content'
+}
 
 
 
@@ -86,7 +90,7 @@ const user = new User(events, {payment: '', address: '', phone: '', email: ''});
 
 const gallery = new ProductGallery(galleryNode, events);
 const modalCard = new ModalCard(cloneTemplate(modalCardTemplate), events, modalCardSelectors, CATEGORY_MAPPINGS);
-const modal = new Modal(ensureElement<HTMLElement>('#modal-container'), events);
+const modal = new Modal(ensureElement<HTMLElement>('#modal-container'), modalSelectors, events);
 const header = new Header(ensureElement<HTMLElement>('.header__container'), {counterSelector: '.header__basket-counter', basketButtonSelector: '.header__basket'},  events);
 const productBasket = new ProductBasket(cloneTemplate(productBasketTemplate), productBasketSelectors, events);
 const formPaymentAndAddress = new FormPaymentAndAddress(cloneTemplate(formPaymentAndAddressTemplate), 'addressAndPayment', formPaymentAndAddressSelectors, events, ERROR_MAPPINGS);

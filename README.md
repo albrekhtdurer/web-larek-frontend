@@ -95,16 +95,15 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 
 * Поля:
   + protected closeButton: HTMLButtonElement
-  + protected content: HTMLElement
+  + protected _content: HTMLElement
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + closeButtonClass: string - css-класс для кнопки закрытия модального окна
-  + modalContentClass: string - css-класс для компонента контейнера содержимого модального окна
+  + selectors: Record<string, string> - справочник с css-селекторами для кнопки закрытия модального окна и контента модального окна
   + events: IEvents - экземпляр брокера событий
 
 * Методы:
-  + set content(value: HTMLElement): void
+  + set content(value: HTMLElement): - устанавливает контент модального окна
   + open(): void - делает модальное окно видимым
   + close(): void - закрывает модальное окно
   + render(data: IModalData): HTMLElement - отрисовывает модальное окно
