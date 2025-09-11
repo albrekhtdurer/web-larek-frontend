@@ -72,7 +72,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + selectors: Record<string, string> - справочник с css-селекторами для компонентов counterSpan и basketButton
+  + selectors: Record<string, string> - справочник с селекторами для компонентов counterSpan и basketButton
   + events: IEvents - экземпляр брокера событий 
 
 * Методы:
@@ -99,7 +99,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + selectors: Record<string, string> - справочник с css-селекторами для кнопки закрытия модального окна и контента модального окна
+  + selectors: Record<string, string> - справочник с селекторами для кнопки закрытия модального окна и контента модального окна
   + events: IEvents - экземпляр брокера событий
 
 * Методы:
@@ -111,18 +111,21 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 5. Класс BaseCard<T> (наследник класса Component<BaseCardData>) - базовый класс с минимальными данными карточки
 
 * Поля:
- + price: HTMLElement - компонент span-поля с информацией о цене товара
- + title: HTMLElement - компонент span-поля с названием товара
- + protected events: IEvents - экземпляр брокера событий
+  protected _price: HTMLElement - компонент span-поля с ценой товара
+  protected _title: HTMLElement - компонент span-поля с названием товара
+  protected _id: string - id карточки
+  protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + priceClass: string - css-класс для компонента span-поля с информацией о цене товара
-  + titleClass: string - css-класс для компонента span-поля с названием товара
+  + priceSelector: string - селектор для компонента span-поля с информацией о цене товара
+  + titleSelector: string - селектор для компонента span-поля с названием товара
   + events: IEvents - экземпляр брокера событий
 
 * Методы:
-  + set title(value: string): void - метод для установки названия товара в карточке
-  + set price(value: string): void - метод для установки цены товара в карточке
+  + set title(value: string) - метод для установки названия товара в карточке
+  + set price(value: string) - метод для установки цены товара в карточке
+  + set id(value: string) - метод для установки id карточки
+  + get id() - метод для получения id карточки
 
 6. Класс BasketCard (наследник класса BaseCard<BasketCardData>) - класс для отображения товара в корзине
 

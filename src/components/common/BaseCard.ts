@@ -24,7 +24,6 @@ export class BaseCard<T> extends Component<IProduct> {
     this.setText(this._price, priceText);
   }
 
-  //TODO: дока
   set id(value: string) {
     this._id = value;
   }
