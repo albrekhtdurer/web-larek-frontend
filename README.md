@@ -60,9 +60,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 
 * Методы:
   + protected setText(element: HTMLElement, value: unknown): void - устанавливает текстовое значение для элемента
-  + setDisabled(element: HTMLElement, state: boolean): void - меняет статус блокировки элемента
-  + protected setHidden(element: HTMLElement): void - делает элемент скрытым
-  + protected setVisible(element: HTMLElement): void - делает элемент видимым
+  + protected setDisabled(element: HTMLElement, state: boolean): void - меняет статус блокировки элемента
   + protected setImage(element: HTMLImageElement, src: string, alt?: string): void - устанавливает изображение с альтернативным текстом
   + render(data?: Partial<T>): HTMLElement - отрисовывает элемент и возвращает корневой DOM-элемент (контейнер)
 
