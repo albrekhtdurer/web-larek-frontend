@@ -1,9 +1,9 @@
 import {IEvents} from "../base/events";
 import {ensureElement} from "../../utils/utils";
 import { Component } from "../base/component";
-import { BaseFormData } from "../../types";
+import { IBaseFormData } from "../../types";
 
-export class BaseForm<T> extends Component<BaseFormData> {
+export class BaseForm<T> extends Component<IBaseFormData> {
     protected name: string;
     protected submitButton: HTMLButtonElement;
     protected validationError: HTMLElement;

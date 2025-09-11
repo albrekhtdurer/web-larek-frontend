@@ -1,9 +1,9 @@
 import { BaseForm } from "../common/Form";
-import {FormPaymentAndAddressData } from '../../types'
 import { IEvents } from "../base/events";
 import { ensureElement } from "../../utils/utils";
+import { IFormPaymentAndAddressData } from "../../types";
 
-export class FormPaymentAndAddress extends BaseForm<FormPaymentAndAddressData> {
+export class FormPaymentAndAddress extends BaseForm<IFormPaymentAndAddressData> {
   protected cashButton: HTMLButtonElement;
   protected cardButton: HTMLButtonElement;
 

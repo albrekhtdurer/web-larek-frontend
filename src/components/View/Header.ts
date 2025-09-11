@@ -1,9 +1,9 @@
-import { HeaderData } from "../../types";
+import { IHeaderData } from "../../types";
 import { ensureElement } from "../../utils/utils";
 import { Component } from "../base/component";
 import { IEvents } from "../base/events";
 
-export class Header extends Component<HeaderData> {
+export class Header extends Component<IHeaderData> {
   protected counterSpan: HTMLElement;
   protected basketButton: HTMLButtonElement;
   protected events: IEvents;

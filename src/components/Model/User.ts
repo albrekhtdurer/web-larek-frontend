@@ -1,4 +1,4 @@
-import { FormErrors, IUser, PaymentType } from "../../types";
+import { IUser, PaymentType } from "../../types";
 import { IEvents } from "../base/events";
 import { Model } from "../base/model";
 

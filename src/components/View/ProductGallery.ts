@@ -1,8 +1,8 @@
 import { Component } from "../base/component";
-import { GalleryData } from "../../types";
+import { IGalleryData } from "../../types";
 import { IEvents } from "../base/events";
 
-export class ProductGallery extends Component<GalleryData> {
+export class ProductGallery extends Component<IGalleryData> {
   protected gallery: HTMLElement;
   protected events: IEvents;
 

@@ -66,7 +66,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + protected setImage(element: HTMLImageElement, src: string, alt?: string): void - устанавливает изображение с альтернативным текстом
   + render(data?: Partial<T>): HTMLElement - отрисовывает элемент и возвращает корневой DOM-элемент (контейнер)
 
-2. Класс Header (наследник класса Component<HeaderData>) - Класс для отображения галереи карточек товаров
+2. Класс Header (наследник класса Component<IHeaderData>) - Класс для отображения галереи карточек товаров
 
 * Поля:
   + counterClass: HTMLButtonElement - компонент span-поля с общим числом товаров в корзине
@@ -81,7 +81,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 * Методы:
   + set counter(total: number): void - метод для установки значения общего числа товаров в корзине
 
-3. Класс ProductGallery (наследник класса Component<GalleryData>) - Класс для отображения хедера
+3. Класс ProductGallery (наследник класса Component<IGalleryData>) - Класс для отображения хедера
 
 * Поля:
   + gallery: HTMLElement - компонент с галереей карточек
@@ -176,7 +176,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + set description(value: string): void - метод для установки описания товара
   + toggleBasketButton(): void - метод для смены текста кнопки добавления в корзину
 
-9. Класс BaseForm<T> (наследник класса Component<BaseFormData>) - базовый класс для формы
+9. Класс BaseForm<T> (наследник класса Component<IBaseFormData>) - базовый класс для формы
 
 * Поля (помимо тех, что есть в родительском классе):
   + submitButton: HTMLButtonElement - компонент с кнопкой отправки формы
@@ -235,7 +235,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + set items(products: HTMLElement[]): void - метод для установки массива с товарами
   + set totalPrice(price: number): void - метод для установки общей цены
 
-13. Класс SuccessMessage (наследник класса Component<SuccessData>)
+13. Класс SuccessMessage (наследник класса Component<ISuccessData>)
 
 * Поля:
   + payMessage: HTMLElement - компонент с сообщением об успешном заказе

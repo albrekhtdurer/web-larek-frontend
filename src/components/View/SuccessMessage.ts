@@ -1,9 +1,9 @@
-import { SuccessData } from "../../types";
+import { ISuccessData } from "../../types";
 import { ensureElement } from "../../utils/utils";
 import { Component } from "../base/component";
 import { IEvents } from "../base/events";
 
-export class SuccessMessage extends Component<SuccessData> {
+export class SuccessMessage extends Component<ISuccessData> {
   protected _totalSum: HTMLElement;
   protected closeButton: HTMLButtonElement;
   protected events: IEvents;

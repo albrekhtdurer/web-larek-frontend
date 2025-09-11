@@ -30,13 +30,13 @@ export interface IOrderResult {
 	total: number;
 }
 
-export type FormErrors = Partial<Record<keyof IUser, string>>;
-
-export interface HeaderData {
+// NOTE: большая часть интерфейсов с данными отображения изменилась, т.к. типы данных для полей при исходной реализации не позволяли эффективно реализовать классы
+// также был унифицирован нейминг
+export interface IHeaderData {
 	counter: number;
 }
 
-export interface GalleryData {
+export interface IGalleryData {
 	productCards: HTMLElement[];
 }
 
@@ -44,17 +44,14 @@ export interface IModalData {
 	content: HTMLElement;
 }
 
-export interface BaseFormData {
+export interface IBaseFormData {
   valid: boolean;
   errors: string[];
 }
 
-export interface FormEmailAndPhoneData extends BaseFormData {
-	inputs: NodeListOf<HTMLInputElement>;
-}
-
-export interface FormPaymentAndAddressData extends BaseFormData {
-	inputs: NodeListOf<HTMLInputElement>;
+export interface IFormPaymentAndAddressData extends IBaseFormData {
+	payment: string;
+  address: string
 }
 
 export interface IProductBasket {
@@ -62,6 +59,6 @@ export interface IProductBasket {
 	totalPrice: number;
 }
 
-export interface SuccessData {
+export interface ISuccessData {
   totalSum: number;
 }
