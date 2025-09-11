@@ -190,6 +190,8 @@ events.on('emailAndPhone: submit', () => {
 events.on('order: success', () => {
   basket.clearBasket();
   user.clearUserData();
+  formEmailAndPhone.reset();
+  formPaymentAndAddress.reset();
 });
 
 events.on('success: close', () => {

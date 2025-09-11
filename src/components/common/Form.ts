@@ -42,4 +42,8 @@ export class BaseForm<T> extends Component<BaseFormData> {
     getValues(): HTMLFormControlsCollection {
       return this.container.elements;
     }
+
+    reset(): void {
+        this.container.reset();
+    }
 }

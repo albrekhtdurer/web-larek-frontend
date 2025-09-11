@@ -34,4 +34,10 @@ export class FormPaymentAndAddress extends BaseForm<FormPaymentAndAddressData> {
       this.cashButton.classList.remove('button_alt-active');
     }
   }
+
+  reset(): void {
+    this.cardButton.classList.remove('button_alt-active');
+    this.cashButton.classList.remove('button_alt-active');
+    this.container.reset();
+  }
 }
