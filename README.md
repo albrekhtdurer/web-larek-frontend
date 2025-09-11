@@ -305,13 +305,13 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 1. Класс LarekApi - класс для взаимодействия с серверной частью приложения.
 
 * Поля:
-  + protected baseApi: instanceof Api - экземпляр базового класса Api
+  + protected baseApi: Api - экземпляр базового класса Api
 
 * Принимает в конструкторе:
-    * baseApi: instanceof Api - экземпляр базового класса Api
+    * baseApi: Api - экземпляр базового класса Api
 
 * Методы:
-  + getProductList(): Promise<ApiListResponse<IProduct> - запрашивает с сервера список продуктов
+  + getProductList(): Promise<IProduct[]> - запрашивает с сервера список продуктов
   + sendOrder(order: IOrder) - Promise<IOrderResult> - отправляет на сервер заказ пользователя
 
 ## Взаимодействие компонентов (слой презентера)
