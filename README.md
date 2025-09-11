@@ -155,25 +155,26 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + set category(value: string) - метод для установки категории товара
   + set image(value: string) - метод для установки картинки товара
 
-8. Класс ModalCard (наследник класса BaseCard<ModalCardData>) - класс для отображения товара в модальном окне
+8. Класс ModalCard (наследник класса BaseCard<IProductWStatus>) - класс для отображения товара в модальном окне
 
 * Поля (помимо тех, что есть в родительском классе):
- + category: HTMLElement - компонент span-поля с категорией товара
- + image: HTMLImageElement - компонент с картинкой для товара
- + description: HTMLElement - компонент span-поля с категорией товара
- + basketButton: HTMLButtonElement - компонент кнопки для добавления в корзину (или удаления из корзины)
+
+  + protected _category: HTMLElement - компонент span-поля с категорией товара
+  + protected _image: HTMLImageElement - компонент с картинкой для товара
+  + protected _description: HTMLElement - компонент span-поля с категорией товара
+  + protected categoryMappings: Record<string, string> - справочник с маппингом названия категории карточки и css-класса (с цветом категории)
+  + protected basketButton: HTMLButtonElement - компонент кнопки для добавления в корзину (или удаления из корзины)
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + categoryClass: string - css-класс для компонента span-поля с категорией товара
-  + imageClass: string - css-класс для компонента картинки товара
-  + imageClass: string - css-класс для компонента картинки товара
-  + basketButtonClass: string - css-класс для компонент кнопки добавления в корзину
+  + selectors: Record<string, string> - справочник с селекторами для компонентов родительского класса и селекторами для категории, картинки и кнопки взаимодействия с корзиной
+  + categoryMappings: Record<string, string> - справочник с маппингом названия категории карточки и css-класса (с цветом категории)
 
 * Методы:
-  + set category(value: string): void - метод для установки категории товара
-  + set image(value: string): void - метод для установки картинки товара
-  + set description(value: string): void - метод для установки описания товара
-  + toggleBasketButton(): void - метод для смены текста кнопки добавления в корзину
+  + set category(value: string) - метод для установки категории товара
+  + set image(value: string) - метод для установки картинки товара
+  + set description(value: string) - метод для установки описания товара
+  + set price(value: string) - метод для установки цены товара (переопределен относительно родительского класса)
+  + set basketButtonStatus(value: string) - метод для установки текста и статуса кнопки добавления в корзину
 
 9. Класс BaseForm<T> (наследник класса Component<IBaseFormData>) - базовый класс для формы
 

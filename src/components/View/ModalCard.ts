@@ -37,11 +37,6 @@ export class ModalCard extends BaseCard<IProductWStatus> {
     this.setText(this._description, value);
   }
 
-  set price(value: string) {
-    const priceText = value  ? value + ' синапсов' : 'бесценно';
-    this.setText(this._price, priceText);
-  }
-
   set basketButtonStatus(value: string) {
     const disable = (value) === 'Недоступно' ? true : false;
     this.setDisabled(this.basketButton, disable);
