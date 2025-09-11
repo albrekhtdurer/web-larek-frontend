@@ -196,29 +196,20 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + getValues(): HTMLFormControlsCollection - метод для получения полей формы
   + reset(): void - сбрасывает значения полей формы
 
-10. Класс FormEmailAndPhone (наследник класса BaseForm<FormEmailAndPhoneData>) - класс для формы с телефоном и Email
+10. Класс FormPaymentAndAddress (наследник класса BaseForm<IFormPaymentAndAddressData>) - класс для формы со способом оплаты и Email
 
 * Поля (помимо тех, что есть в родительском классе):
-  + inputs: NodeListOf<HTMLInputElement> - все поля формы
+  + protected cashButton: HTMLButtonElement - компонент с кнопкой оплаты "при получении"
+  + protected cardButton: HTMLButtonElement - компонент с кнопкой оплаты "онлайн"
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + emailField: string - id для компонента с полем формы для ввода email
-  + phoneField: string - id для компонента с полем формы для ввода телефона
-
-11. Класс FormPaymentAndAddress (наследник класса BaseForm<FormPaymentAndAddressData>) - класс для формы со способом оплаты и Email
-
-* Поля (помимо тех, что есть в родительском классе):
-  + inputs: NodeListOf<HTMLInputElement> - все поля формы
-
-* Принимает в конструктор (помимо того, что в родительском классе):
-  + addressField: string - id для компонента с полем формы для ввода адреса
-  + buttonsField: string - id для компонента-контейнера с кнопками выбора оплаты
+  + selectors: Record<string, string> - справочник с селектором ошибок для родительского класса и селектором для контейнера с кнопками
 
 * Методы (помимо тех, что есть в родительском классе)
-  + togglePaymentTypeButtons(): void - переключает кнопки с методом оплаты (делая неактивной ту кнопку, которую не выбрали)
-  + getPaymentType(): string - получает тип оплаты в зависимости от выбранной кнопки
+  + togglePaymentTypeButtons(button: HTMLButtonElement): void - переключает кнопки с методом оплаты (делая неактивной ту кнопку, которую не выбрали)
+  + reset(): void - сбрасывает значения полей формы (переопределен относительного родительского класса - нам также нужно делать кнопки неактивными)
 
-12. Класс ProductBasket (наследник класса Component<ProductBasket>)
+11. Класс ProductBasket (наследник класса Component<ProductBasket>)
 
 * Поля:
   + items: HTMLElement - компонент со списком товаров в корзине
@@ -236,7 +227,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + set items(products: HTMLElement[]): void - метод для установки массива с товарами
   + set totalPrice(price: number): void - метод для установки общей цены
 
-13. Класс SuccessMessage (наследник класса Component<ISuccessData>)
+12. Класс SuccessMessage (наследник класса Component<ISuccessData>)
 
 * Поля:
   + payMessage: HTMLElement - компонент с сообщением об успешном заказе
