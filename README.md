@@ -134,24 +134,26 @@ NOTE: Кастомные интерфейсы и типы данных, испо
  + protected deleteButton: HTMLButtonElement - компонент кнопки для удаления из корзины
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + selectors: Record<string, string> - справочник с селекторами для родительского класса и селектором span-поля с индексом
+  + selectors: Record<string, string> - справочник с селекторами для компонентов родительского класса и селектором span-поля с индексом
 
 * Методы:
   + set index(value: number): void - метод для установки номера товара в корзине
 
-7. Класс GalleryCard (наследник класса BaseCard<GalleryCardData>) - класс для отображения товара в галерее
+7. Класс GalleryCard (наследник класса BaseCard<IProduct>) - класс для отображения товара в галерее
 
 * Поля (помимо тех, что есть в родительском классе):
- + category: HTMLElement - компонент span-поля с категорией товара
- + image: HTMLImageElement - компонент с картинкой для товара
+
+  + protected _category: HTMLElement - компонент span-поля с категорией товара
+  + protected _image: HTMLImageElement - компонент с картинкой для товара
+  + protected categoryMappings: Record<string, string> - справочник с маппингом названия категории карточки и css-класса (с цветом категории)
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + categoryClass: string - css-класс для компонента span-поля с категорией товара
-  + imageClass: string - css-класс для компонента картинки товара
+  + selectors: Record<string, string> - справочник с селекторами для компонентов родительского класса и селекторами для категории и картинки
+  + categoryMappings: Record<string, string> - справочник с маппингом названия категории карточки и css-класса (с цветом категории)
 
 * Методы:
-  + set category(value: string): void - метод для установки категории товара
-  + set image(value: string): void - метод для установки картинки товара
+  + set category(value: string) - метод для установки категории товара
+  + set image(value: string) - метод для установки картинки товара
 
 8. Класс ModalCard (наследник класса BaseCard<ModalCardData>) - класс для отображения товара в модальном окне
 

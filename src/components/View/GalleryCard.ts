@@ -8,7 +8,7 @@ export class GalleryCard extends BaseCard<IProduct> {
   protected categoryMappings: Record<string, string>;
 
   constructor(container: HTMLElement, events: IEvents, selectors: Record<string, string>, categoryMappings: Record<string, string>) {
-    const {priceSelector, titleSelector, categorySelector, imageSelector, descriptionSelector, basketButtonSelector} = selectors;
+    const {priceSelector, titleSelector, categorySelector, imageSelector} = selectors;
     super(container, priceSelector, titleSelector, events);
     this._category = container.querySelector(categorySelector);
     this._image = container.querySelector(imageSelector);
