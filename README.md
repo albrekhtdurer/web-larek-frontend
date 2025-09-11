@@ -209,23 +209,23 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + togglePaymentTypeButtons(button: HTMLButtonElement): void - переключает кнопки с методом оплаты (делая неактивной ту кнопку, которую не выбрали)
   + reset(): void - сбрасывает значения полей формы (переопределен относительного родительского класса - нам также нужно делать кнопки неактивными)
 
-11. Класс ProductBasket (наследник класса Component<ProductBasket>)
+11. Класс ProductBasket (наследник класса Component<IProductBasket>)
 
 * Поля:
-  + items: HTMLElement - компонент со списком товаров в корзине
-  + orderButton: HTMLButtonElement - компонент для кнопки оформления заказа
-  + totalPrice: HTMLElement - компонент с ценой всех товаров в корзине
+
+  + protected _items: HTMLElement - компонент со списком товаров в корзине
+  + protected orderButton: HTMLButtonElement - компонент для кнопки оформления заказа
+  + protected _totalPrice: HTMLElement - компонент с ценой всех товаров в корзине
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + itemsClass: string - css-класс для компонента со списком товаров в корзине
-  + orderButtonClass: string - css-класс для компонента со списком товаров в корзине
-  + totalPriceClass: string - css-класс для компонента с ценой всех товаров
+  + selectors: Record<string, string> - справочник с селекторами для компонентов списка товаров, кнопки оформления и цены
   + events: IEvents - экземпляр брокера событий
 
 * Методы:
-  + set items(products: HTMLElement[]): void - метод для установки массива с товарами
-  + set totalPrice(price: number): void - метод для установки общей цены
+  + set items(products: HTMLElement[]) - сеттер для массива с товарами
+  + set totalPrice(price: number) - сеттер для общей цены
+  + toggleOrderButton(products: HTMLElement[]): void - переключает кнопку заказа, делая ее активной/неактивной
 
 12. Класс SuccessMessage (наследник класса Component<ISuccessData>)
 

@@ -35,7 +35,7 @@ export class ProductBasket extends Component<IProductBasket> {
     this.setText(this._totalPrice, price + ' синапсов');
   }
 
-  toggleOrderButton(products: HTMLElement[]) {
+  toggleOrderButton(products: HTMLElement[]): void {
     if (products.length) {
         this.setDisabled(this.orderButton, false);
     } else {
