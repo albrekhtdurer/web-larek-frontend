@@ -8,13 +8,14 @@ export class SuccessMessage extends Component<SuccessData> {
   protected closeButton: HTMLButtonElement;
   protected events: IEvents;
 
-  constructor(container: HTMLElement, selectors: Record<string, string>, events: IEvents) {
+  constructor(container: HTMLElement, selectors: Record<string, string>, events: IEvents, totalNumber: number) {
     super(container);
     const {totalSumSelector, closeButtonSelector} = selectors;
     this._totalSum = ensureElement<HTMLElement>(totalSumSelector, container);
     this.events = events;
     this.closeButton = ensureElement<HTMLButtonElement>(closeButtonSelector, container);
     this.closeButton.addEventListener('click', () => this.events.emit('order: success'));
+    this.totalSum = totalNumber;
   }
 
   set totalSum(value: number) {

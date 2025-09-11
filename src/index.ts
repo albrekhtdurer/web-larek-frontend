@@ -18,6 +18,7 @@ import { FormPaymentAndAddress } from './components/View/FormPaymentAndAddress';
 import { User } from './components/Model/User';
 import { IUser } from './types';
 import { BaseForm } from './components/common/Form';
+import { SuccessMessage } from './components/View/SuccessMessage';
 
 const events = new EventEmitter();
 // Чтобы мониторить все события, для отладки
@@ -88,6 +89,12 @@ const formEmailAndPhoneTemplate = document.querySelector('#contacts') as HTMLTem
 const formEmailAndPhone = new BaseForm(cloneTemplate(formEmailAndPhoneTemplate), 'emailAndPhone', '.form__errors', events, ERROR_MAPPINGS);
 
 const user = new User(events, {payment: '', address: '', phone: '', email: ''});
+
+const successTemplate = document.querySelector('#success') as HTMLTemplateElement;
+const successSelectors = {
+  totalSumSelector: '.order-success__description',
+  closeButtonSelector: '.order-success__close'
+}
 
 api
 	.getProductList()
@@ -164,5 +171,17 @@ events.on('emailAndPhone: input', (data: { field: keyof IUser, value: string }) 
   formEmailAndPhone.errors = validationResult.invalidFields;
 });
 
-
+events.on('emailAndPhone: submit', () => {
+  const items = basket.getProducts().map(item => item.id);
+  const order = {...user.getUserData(), total: basket.getTotalPrice(), items: items};
+  api.sendOrder(order).then((result) => {
+    const success = new SuccessMessage(cloneTemplate(successTemplate), successSelectors, events, result.total);
+    modal.render({
+        content: success.render({})
+    });
+  })
+  .catch(err => {
+      console.error(err);
+  });
+});
 
