@@ -209,7 +209,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + togglePaymentTypeButtons(button: HTMLButtonElement): void - переключает кнопки с методом оплаты (делая неактивной ту кнопку, которую не выбрали)
   + reset(): void - сбрасывает значения полей формы (переопределен относительного родительского класса - нам также нужно делать кнопки неактивными)
 
-11. Класс ProductBasket (наследник класса Component<IProductBasket>)
+11. Класс ProductBasket (наследник класса Component<IProductBasket>) -  класс для отображения корзины
 
 * Поля:
 
@@ -227,19 +227,20 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + set totalPrice(price: number) - сеттер для общей цены
   + toggleOrderButton(products: HTMLElement[]): void - переключает кнопку заказа, делая ее активной/неактивной
 
-12. Класс SuccessMessage (наследник класса Component<ISuccessData>)
+12. Класс SuccessMessage (наследник класса Component<ISuccessData>) - класс для отображения сообщения об успешном заказе
 
 * Поля:
-  + payMessage: HTMLElement - компонент с сообщением об успешном заказе
+  + protected _totalSum: HTMLElement - компонент с сообщением о списанной сумме заказа
+  + protected closeButton: HTMLButtonElement - компонент с кнопкой закрытия сообщения
   + protected events: IEvents - экземпляр брокера событий
 
 * Принимает в конструктор (помимо того, что в родительском классе):
-  + payMessageClass: string - css-класс с сообщением об успешном заказе
-  + totalPrice: number - сумма заказа
+  + selectors: Record<string, string> - справочник с селекторами для компонентов сообщения о сумме и кнопки закрытия
+  + totalNumber: number - сумма заказа
   + events: IEvents - экземпляр брокера событий
 
 * Методы:
-  + set payMessage(): void - метод для установки сообщения об успешном заказе с ценой
+  + set totalSum(value: number) - сеттер для сообщения о списанной сумме заказа
 
 
 ### Слой модели
