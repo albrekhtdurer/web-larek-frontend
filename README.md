@@ -261,10 +261,10 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 
 * Поля:
   + protected products: IProduct[] - список данных товаров
-  + selectedProduct: IProduct - объект выбранного товара
+  + protected selectedProduct: IProduct - объект выбранного товара
 
 * Принимает в конструкторе (дополнительно к тому, что наследуется от родителя):
-  + products: IProducts - список продуктов из внешнего источника
+  + products: IProduct[] - список продуктов из внешнего источника
 
 * Методы:
   + getProducts(): IProduct[] - получает все продукты
@@ -281,22 +281,23 @@ NOTE: Кастомные интерфейсы и типы данных, испо
   + getProducts(): IProduct[] - получает все продукты
   + getTotalPrice(): number - получает общую цену продуктов в корзине
   + getTotal(): number - получает общее количество продуктов в корзине
-  + hasProduct(producId: number): boolean - проверяет, есть ли товар в корзине
-  + toggleProductInBasket(id: string): void - меняет статус продукта (добавляет в корзине, если его там нет, и удаляет, если есть)
+  + hasProduct(id: string): boolean - проверяет, есть ли товар в корзине
+  + toggleProductInBasket(product: IProduct): void - меняет статус продукта (добавляет в корзине, если его там нет, и удаляет, если есть)
+  + clearBasket(): void - удаляет все продукты из корзины
 
 4. Класс User (наследник класса Model) - Класс для хранения данных товаров в корзине
 
   * Поля:
-    + userData: IUser - данные пользователя
-    + formErrors: FormErrors
+    + protected userData: IUser - данные пользователя
 
   * Принимает в конструкторе (дополнительно к тому, что наследуется от родителя):
-    * userData?: IUser - данные пользователя
+    * userData: IUser - данные пользователя
 
   * Методы: 
     + setUserDataField(field: keyof IUser, value: string): void - устанавливает поле в объекте данных пользователя
     + getUserData(): IUser - получает данные пользователя
-    + isDataValid(fields: []): boolean - валидирует выбранные данные пользователя
+    + validateFields(fields: (keyof IUser)[]): {isValid: boolean, invalidFields: (keyof IUser)[]} - валидирует выбранные данные пользователя
+    + clearUserData(): void - очищает данные пользователя
 
 
 ### Слой коммуникации

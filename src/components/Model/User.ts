@@ -28,7 +28,7 @@ export class User extends Model {
     return this.userData;
   }
 
-  validateFields(fields: (keyof IUser)[]) {
+  validateFields(fields: (keyof IUser)[]): {isValid: boolean, invalidFields: (keyof IUser)[]} {
     const invalidFields: (keyof IUser)[] = fields.reduce((result, field) => 
       { 
         if (typeof field  === 'string' && !this.userData[field]) {
