@@ -21,25 +21,22 @@ export class ProductBasket extends Component<IProductBasket> {
   }
 
   set items(products: HTMLElement[]) {
-    if (products.length) {
+    const hasProducts = products.length > 0;
+    if (hasProducts) {
         this._items.replaceChildren(...products);
     } else {
         this._items.replaceChildren(createElement<HTMLParagraphElement>('p', {
             textContent: 'Корзина пуста'
         }));
     }
-    this.toggleOrderButton(products);
+    this.toggleOrderButton(hasProducts);
   }
 
   set totalPrice(price: number) {
     this.setText(this._totalPrice, price + ' синапсов');
   }
 
-  toggleOrderButton(products: HTMLElement[]): void {
-    if (products.length) {
-        this.setDisabled(this.orderButton, false);
-    } else {
-        this.setDisabled(this.orderButton, true);
-    }
+  toggleOrderButton(shouldBeActive: boolean): void {
+    this.setDisabled(this.orderButton, !shouldBeActive);
   }
 }

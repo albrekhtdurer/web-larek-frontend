@@ -226,7 +226,7 @@ NOTE: Кастомные интерфейсы и типы данных, испо
 * Методы:
   + set items(products: HTMLElement[]) - сеттер для массива с товарами
   + set totalPrice(price: number) - сеттер для общей цены
-  + toggleOrderButton(products: HTMLElement[]): void - переключает кнопку заказа, делая ее активной/неактивной
+  + toggleOrderButton(shouldBeActive: boolean): void - переключает кнопку заказа, делая ее активной/неактивной
 
 12. Класс SuccessMessage (наследник класса Component<ISuccessData>) - класс для отображения сообщения об успешном заказе
 
