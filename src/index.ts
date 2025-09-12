@@ -2,7 +2,19 @@ import './scss/styles.scss';
 
 import { EventEmitter } from './components/base/events';
 import { Api } from './components/base/api';
-import { API_URL, CDN_URL, CATEGORY_MAPPINGS, ERROR_MAPPINGS, GALLERY_CARD_SELECTORS, MODAL_CARD_SELECTORS, PRODUCT_BASKET_SELECTORS, BASKET_CARD_SELECTORS, FORM_PAYMENT_AND_ADDRESS_SELECTORS, SUCCESS_SELECTORS, MODAL_SELECTORS } from './utils/constants';
+import {
+  API_URL,
+  CDN_URL,
+  CATEGORY_MAPPINGS,
+  ERROR_MAPPINGS,
+  GALLERY_CARD_SELECTORS,
+  MODAL_CARD_SELECTORS,
+  PRODUCT_BASKET_SELECTORS,
+  BASKET_CARD_SELECTORS,
+  FORM_PAYMENT_AND_ADDRESS_SELECTORS,
+  SUCCESS_SELECTORS,
+  MODAL_SELECTORS,
+} from './utils/constants';
 import { LarekApi } from './components/LarekApi';
 import { Catalogue } from './components/Model/Catalogue';
 import { ProductGallery } from './components/View/ProductGallery';
