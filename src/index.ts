@@ -2,7 +2,7 @@ import './scss/styles.scss';
 
 import { EventEmitter } from './components/base/events';
 import { Api } from './components/base/api';
-import { API_URL, CDN_URL, CATEGORY_MAPPINGS, ERROR_MAPPINGS } from './utils/constants';
+import { API_URL, CDN_URL, CATEGORY_MAPPINGS, ERROR_MAPPINGS, GALLERY_CARD_SELECTORS, MODAL_CARD_SELECTORS, PRODUCT_BASKET_SELECTORS, BASKET_CARD_SELECTORS, FORM_PAYMENT_AND_ADDRESS_SELECTORS, SUCCESS_SELECTORS, MODAL_SELECTORS } from './utils/constants';
 import { LarekApi } from './components/LarekApi';
 import { Catalogue } from './components/Model/Catalogue';
 import { ProductGallery } from './components/View/ProductGallery';
@@ -36,48 +36,6 @@ const formPaymentAndAddressTemplate = document.querySelector('#order') as HTMLTe
 const formEmailAndPhoneTemplate = document.querySelector('#contacts') as HTMLTemplateElement;
 const successTemplate = document.querySelector('#success') as HTMLTemplateElement;
 
-// Фиксируем селекторы для отображения
-const galleryCardSelectors = {
-  priceSelector: '.card__price',
-  titleSelector: '.card__title',
-  categorySelector: '.card__category',
-  imageSelector: '.card__image'
-}
-const modalCardSelectors = {
-  priceSelector: '.card__price',
-  titleSelector: '.card__title',
-  categorySelector: '.card__category',
-  imageSelector: '.card__image',
-  descriptionSelector: '.card__text',
-  basketButtonSelector: '.card__button'
-}
-const productBasketSelectors = {
-  orderButtonSelector: '.basket__button',
-  totalPriceSelector: '.basket__price', 
-  basketItemsSelector: '.basket__list',
-}
-const basketCardSelectors = {
-  indexSelector: '.basket__item-index',
-  deleteButtonSelector: '.basket__item-delete',
-  priceSelector: '.card__price',
-  titleSelector: '.card__title',
-}
-const formPaymentAndAddressSelectors = {
-  buttonsContainerSelector: '.order__buttons', 
-  errorSelector: '.form__errors'
-}
-const successSelectors = {
-  totalSumSelector: '.order-success__description',
-  closeButtonSelector: '.order-success__close'
-}
-const modalSelectors = {
-  closeButtonSelector: '.modal__close',
-  contentSelector: '.modal__content',
-  elToBlocSelector: '.page__wrapper',
-}
-
-
-
 // Классы апи
 const baseApi = new Api(API_URL);
 const api = new LarekApi(baseApi, CDN_URL);
@@ -90,16 +48,16 @@ const user = new User(events, {payment: '', address: '', phone: '', email: ''});
 // Классы отображения
 
 const gallery = new ProductGallery(galleryNode, events);
-const modalCard = new ModalCard(cloneTemplate(modalCardTemplate), events, modalCardSelectors, CATEGORY_MAPPINGS);
-const modal = new Modal(ensureElement<HTMLElement>('#modal-container'), modalSelectors, events);
+const modalCard = new ModalCard(cloneTemplate(modalCardTemplate), events, MODAL_CARD_SELECTORS, CATEGORY_MAPPINGS);
+const modal = new Modal(ensureElement<HTMLElement>('#modal-container'), MODAL_SELECTORS, events);
 const header = new Header(ensureElement<HTMLElement>('.header__container'), {counterSelector: '.header__basket-counter', basketButtonSelector: '.header__basket'},  events);
-const productBasket = new ProductBasket(cloneTemplate(productBasketTemplate), productBasketSelectors, events);
-const formPaymentAndAddress = new FormPaymentAndAddress(cloneTemplate(formPaymentAndAddressTemplate), 'addressAndPayment', formPaymentAndAddressSelectors, events, ERROR_MAPPINGS);
+const productBasket = new ProductBasket(cloneTemplate(productBasketTemplate), PRODUCT_BASKET_SELECTORS, events);
+const formPaymentAndAddress = new FormPaymentAndAddress(cloneTemplate(formPaymentAndAddressTemplate), 'addressAndPayment', FORM_PAYMENT_AND_ADDRESS_SELECTORS, events, ERROR_MAPPINGS);
 const formEmailAndPhone = new BaseForm(cloneTemplate(formEmailAndPhoneTemplate), 'emailAndPhone', '.form__errors', events, ERROR_MAPPINGS);
 
 
 events.on('catalogue: changed', () => {
-  const productsHTMLList = catalogue.getProducts().map(item => new GalleryCard(cloneTemplate(galleryCardTemplate), events, galleryCardSelectors, CATEGORY_MAPPINGS).render(item));
+  const productsHTMLList = catalogue.getProducts().map(item => new GalleryCard(cloneTemplate(galleryCardTemplate), events, GALLERY_CARD_SELECTORS, CATEGORY_MAPPINGS).render(item));
   gallery.productCards = productsHTMLList;
   gallery.render();
 });
@@ -132,7 +90,7 @@ events.on('basket: deleteCard', ({id}: {id: string}) => {
 
 events.on('basket: changed', () => {
   const basketProductsHTMLList = basket.getProducts().map(function(product, index) {
-    const basketCard = new BasketCard(cloneTemplate(basketCardTemplate), events, basketCardSelectors);
+    const basketCard = new BasketCard(cloneTemplate(basketCardTemplate), events, BASKET_CARD_SELECTORS);
     basketCard.index = index+1;
     return basketCard.render(product);
   });
@@ -169,7 +127,7 @@ events.on('emailAndPhone: submit', () => {
   const items = basket.getProducts().map(item => item.id);
   const order = {...user.getUserData(), total: basket.getTotalPrice(), items: items};
   api.sendOrder(order).then((result) => {
-    const success = new SuccessMessage(cloneTemplate(successTemplate), successSelectors, events, result.total);
+    const success = new SuccessMessage(cloneTemplate(successTemplate), SUCCESS_SELECTORS, events, result.total);
     modal.render({
         content: success.render({})
     });
